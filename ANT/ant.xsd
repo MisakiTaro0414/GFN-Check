@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://example.com/yourproject"
+    xmlns="http://example.com/yourproject"
+    elementFormDefault="qualified">
+
+    <!-- Root element: project -->
+    <xsd:element name="project">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- Zero or more properties -->
+                <xsd:element ref="property" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- One or more targets -->
+                <xsd:element ref="target" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- property -->
+    <xsd:element name="property" type="emptyType"/>
+
+    <!-- target -->
+    <xsd:element name="target">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- Must have at least one javac -->
+                <xsd:element ref="javac" minOccurs="1" maxOccurs="unbounded"/>
+                <!-- Must have at least one copy -->
+                <xsd:element ref="copy" minOccurs="1" maxOccurs="unbounded"/>
+
+                <!-- Zero or more of the other tasks -->
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="echo"/>
+                    <xsd:element ref="java"/>
+                    <xsd:element ref="mkdir"/>
+                    <xsd:element ref="task"/>
+                </xsd:choice>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Core tasks -->
+    <xsd:element name="echo" type="emptyType"/>
+    <xsd:element name="javac" type="emptyType"/>
+    <xsd:element name="java" type="emptyType"/>
+    <xsd:element name="mkdir" type="emptyType"/>
+    <xsd:element name="copy" type="emptyType"/>
+    <xsd:element name="task" type="emptyType"/>
+
+    <!-- A generic empty type for all elements -->
+    <xsd:complexType name="emptyType">
+        <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+</xsd:schema>

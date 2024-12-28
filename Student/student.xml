@@ -1,0 +1,9 @@
+<student>
+  <name>Lee</name>
+  <school>KAIST</school>
+  <age>24</age>
+  <friends>
+    <name>Kim</name>
+    <name>Park</name>
+  </friends>
+</student>
